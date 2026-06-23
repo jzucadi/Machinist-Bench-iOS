@@ -15,13 +15,32 @@ const CDN = [
   'https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'
 ];
 
+// Google Fonts stylesheet (must match the @import in app.html byte-for-byte).
+// The CSS only names the woff2 files — they're parsed out and cached too.
+const FONTS_CSS = 'https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap';
+
+async function putBestEffort(c, url, opts) {
+  try { await c.put(url, await fetch(url, opts)); } catch (_) { /* offline/CDN down — runtime cache catches it later */ }
+}
+
+async function precacheFonts(c) {
+  try {
+    const res = await fetch(FONTS_CSS); // googleapis sends CORS, so the body is readable
+    await c.put(FONTS_CSS, res.clone());
+    const css = await res.text();
+    const urls = [...css.matchAll(/url\((https:\/\/[^)]+)\)/g)].map((m) => m[1]);
+    await Promise.all(urls.map((u) => putBestEffort(c, u, { mode: 'no-cors' })));
+  } catch (_) { /* fonts are cosmetic — system fallback if this fails */ }
+}
+
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
     const c = await caches.open(CACHE);
     await c.addAll(CORE);
-    await Promise.all(CDN.map(async (url) => {
-      try { await c.put(url, await fetch(url, { mode: 'no-cors' })); } catch (_) { /* CDN down — runtime cache will catch it */ }
-    }));
+    await Promise.all([
+      ...CDN.map((url) => putBestEffort(c, url, { mode: 'no-cors' })),
+      precacheFonts(c)
+    ]);
     self.skipWaiting();
   })());
 });
