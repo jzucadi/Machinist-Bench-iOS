@@ -56,6 +56,7 @@ struct HomeView: View {
         case "bore": BoringView()
         case "ream": ReamingView()
         case "saw": BandSawView()
+        case "math": ShopMathView()
         default: EmptyView()
         }
     }
