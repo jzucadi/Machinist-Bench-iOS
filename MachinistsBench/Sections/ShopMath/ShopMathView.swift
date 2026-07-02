@@ -46,10 +46,24 @@ struct ShopMathView: View {
                     RightTriangleSubView(system: system)
                 case .taper:
                     TaperSubView(system: system)
-                default:
-                    Text("Coming soon")
-                        .foregroundStyle(Catppuccin.overlay0)
-                        .padding(.top, 40)
+                case .gearRatio:
+                    GearSubView(system: system)
+                case .knurling:
+                    KnurlSubView(system: system)
+                case .surfaceFinish:
+                    SurfaceFinishSubView(system: system)
+                case .barWeight:
+                    BarWeightSubView(system: system)
+                case .dividingHead:
+                    DividingHeadSubView(system: system)
+                case .changeGears:
+                    ChangeGearsSubView(system: system)
+                case .hardness:
+                    HardnessSubView(system: system)
+                case .fitsAndTol:
+                    FitsSubView(system: system)
+                case .wireSheet:
+                    GaugeSubView(system: system)
                 }
             }
             .padding(.vertical, 16)
