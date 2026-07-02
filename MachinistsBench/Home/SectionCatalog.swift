@@ -21,7 +21,7 @@ enum SectionCatalog {
         ]),
         ("Calculate & Measure", [
             SectionItem(id: "math", name: "Shop Math", accent: .mauve, available: true),
-            SectionItem(id: "conv", name: "Converter", accent: .blue, available: false),
+            SectionItem(id: "conv", name: "Converter", accent: .blue, available: true),
             SectionItem(id: "layout", name: "Layout", accent: .blue, available: false),
             SectionItem(id: "scale", name: "Scale", accent: .mauve, available: false),
         ]),

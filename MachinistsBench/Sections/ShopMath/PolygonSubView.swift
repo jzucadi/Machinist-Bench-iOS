@@ -18,15 +18,8 @@ struct PolygonSubView: View {
     }
 
     private var dims: PolygonDims {
-        // value input is displayed in current unit; convert to inches for calc
-        let valueIn: Double
-        if system == .metric {
-            // displayed as mm, stored in inches
-            valueIn = value
-        } else {
-            valueIn = value
-        }
-        return polygon(sides: sides, mode: polyMode, value: valueIn)
+        // `value` is stored in inches (metricLengthBinding handles the display conversion)
+        polygon(sides: sides, mode: polyMode, value: value)
     }
 
     private var interiorAngle: Double {

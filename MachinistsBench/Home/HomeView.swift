@@ -57,6 +57,7 @@ struct HomeView: View {
         case "ream": ReamingView()
         case "saw": BandSawView()
         case "math": ShopMathView()
+        case "conv": ConverterView()
         default: EmptyView()
         }
     }
