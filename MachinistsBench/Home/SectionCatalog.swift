@@ -23,7 +23,7 @@ enum SectionCatalog {
             SectionItem(id: "math", name: "Shop Math", accent: .mauve, available: true),
             SectionItem(id: "conv", name: "Converter", accent: .blue, available: true),
             SectionItem(id: "layout", name: "Layout", accent: .blue, available: true),
-            SectionItem(id: "scale", name: "Scale", accent: .mauve, available: false),
+            SectionItem(id: "scale", name: "Scale", accent: .mauve, available: true),
         ]),
         ("Reference", [
             SectionItem(id: "threads", name: "Threads", accent: .blue, available: false),

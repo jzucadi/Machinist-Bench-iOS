@@ -59,6 +59,7 @@ struct HomeView: View {
         case "math": ShopMathView()
         case "conv": ConverterView()
         case "layout": LayoutView()
+        case "scale": ScaleView()
         default: EmptyView()
         }
     }
