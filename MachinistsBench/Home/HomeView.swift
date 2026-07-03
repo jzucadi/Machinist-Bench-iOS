@@ -58,6 +58,7 @@ struct HomeView: View {
         case "saw": BandSawView()
         case "math": ShopMathView()
         case "conv": ConverterView()
+        case "layout": LayoutView()
         default: EmptyView()
         }
     }
