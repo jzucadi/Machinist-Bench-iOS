@@ -21,7 +21,7 @@ struct ScaleSpeedSubView: View {
                 Field(label: "Scale (1:N)") {
                     NumberInput(value: $n, step: 1, accent: .mauve)
                 }
-                Field(label: "Model Wheel Ø", hint: system == .metric ? "mm" : "in") {
+                Field(label: "Full-Size Wheel Ø", hint: system == .metric ? "mm" : "in") {
                     NumberInput(value: metricLengthBinding($wheelDiaIn, system: system),
                                 step: system == .metric ? 10 : 1,
                                 accent: .mauve)
