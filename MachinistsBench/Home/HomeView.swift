@@ -60,6 +60,7 @@ struct HomeView: View {
         case "conv": ConverterView()
         case "layout": LayoutView()
         case "scale": ScaleView()
+        case "threads": ThreadsView()
         default: EmptyView()
         }
     }
