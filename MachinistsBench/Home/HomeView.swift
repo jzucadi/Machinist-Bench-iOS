@@ -61,6 +61,7 @@ struct HomeView: View {
         case "layout": LayoutView()
         case "scale": ScaleView()
         case "threads": ThreadsView()
+        case "ref": ReferenceView()
         default: EmptyView()
         }
     }

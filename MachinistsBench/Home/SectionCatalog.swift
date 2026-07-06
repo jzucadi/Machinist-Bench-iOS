@@ -28,7 +28,7 @@ enum SectionCatalog {
         ("Reference", [
             SectionItem(id: "threads", name: "Threads", accent: .blue, available: true),
             SectionItem(id: "rose", name: "Rose Engine", accent: .red, available: false),
-            SectionItem(id: "ref", name: "Reference", accent: .blue, available: false),
+            SectionItem(id: "ref", name: "Reference", accent: .blue, available: true),
         ]),
     ]
 }
