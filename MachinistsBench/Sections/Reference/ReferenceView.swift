@@ -1,26 +1,29 @@
 import SwiftUI
 
+/// Final 14-case web picker order (app-new.html line 4197).
 enum ReferenceTool: String, CaseIterable {
-    case loctite      = "Loctite"
-    case modelThreads = "Model Threads"
-    case silverSolder = "Silver Solder"
-    case tapersCollets = "Tapers & Collets"
-    case hardness     = "Hardness"
-    case heatTreat    = "Heat Treat"
-    case grinding     = "Grinding"
-    case steam        = "Steam"
-    case toolStyles   = "Tool Styles"
-    case files        = "Files"
-    case inserts      = "Inserts"
+    case inserts         = "Inserts"
+    case toolStyles      = "Tool Styles"
     case drillSharpening = "Drill Sharpening"
-    case prints       = "Print Symbols"
+    case micrometer      = "Micrometer"
+    case files           = "Files"
+    case prints          = "Print Symbols"
+    case loctite         = "Loctite"
+    case modelThreads    = "Model Threads"
+    case silverSolder    = "Silver Solder"
+    case steam           = "Steam"
+    case hardness        = "Hardness"
+    case heatTreat       = "Heat Treat"
+    case grinding        = "Grinding"
+    case tapersCollets   = "Tapers & Collets"
 }
 
 struct ReferenceView: View {
     @AppStorage("unitSystem") private var unitRaw = UnitSystem.imperial.rawValue
     private var system: UnitSystem { UnitSystem(rawValue: unitRaw) ?? .imperial }
 
-    @State private var tool: ReferenceTool = .loctite
+    // Web default view (app-new.html line 4188: useState("inserts")).
+    @State private var tool: ReferenceTool = .inserts
 
     var body: some View {
         ScrollView {
@@ -38,32 +41,34 @@ struct ReferenceView: View {
 
                 // Sub-view switch
                 switch tool {
+                case .inserts:
+                    InsertsSubView(system: system)
+                case .toolStyles:
+                    ToolStylesSubView(system: system)
+                case .drillSharpening:
+                    DrillSharpeningSubView(system: system)
+                case .micrometer:
+                    MicrometerSubView(system: system)
+                case .files:
+                    FilesSubView(system: system)
+                case .prints:
+                    PrintsSubView(system: system)
                 case .loctite:
                     LoctiteSubView(system: system)
                 case .modelThreads:
                     ModelThreadsSubView(system: system)
                 case .silverSolder:
                     SilverSolderSubView(system: system)
-                case .tapersCollets:
-                    TapersColletsSubView(system: system)
+                case .steam:
+                    SteamSubView(system: system)
                 case .hardness:
                     HardnessRefSubView(system: system)
                 case .heatTreat:
                     HeatTreatSubView(system: system)
                 case .grinding:
                     GrindingSubView(system: system)
-                case .steam:
-                    SteamSubView(system: system)
-                case .toolStyles:
-                    ToolStylesSubView(system: system)
-                case .files:
-                    FilesSubView(system: system)
-                case .inserts:
-                    InsertsSubView(system: system)
-                case .drillSharpening:
-                    DrillSharpeningSubView(system: system)
-                case .prints:
-                    PrintsSubView(system: system)
+                case .tapersCollets:
+                    TapersColletsSubView(system: system)
                 }
             }
             .padding(.vertical, 16)
