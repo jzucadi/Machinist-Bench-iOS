@@ -11,6 +11,7 @@ enum ReferenceTool: String, CaseIterable {
     case steam        = "Steam"
     case toolStyles   = "Tool Styles"
     case files        = "Files"
+    case inserts      = "Inserts"
 }
 
 struct ReferenceView: View {
@@ -55,6 +56,8 @@ struct ReferenceView: View {
                     ToolStylesSubView(system: system)
                 case .files:
                     FilesSubView(system: system)
+                case .inserts:
+                    InsertsSubView(system: system)
                 }
             }
             .padding(.vertical, 16)
