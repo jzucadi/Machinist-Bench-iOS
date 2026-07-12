@@ -14,7 +14,7 @@ struct InsertsSubView: View {
     @State private var bfeat = "thru"
     @State private var cut   = "gen"
     @State private var mat   = "steel"
-    @State private var mach  = "mid"
+    @State private var mach  = "light"
 
     // MARK: - Color bindings (§0 + B1 report table)
 
@@ -37,15 +37,15 @@ struct InsertsSubView: View {
         "steel": ("ISO P", "coated carbide (CVD multilayer for turning)",
                   "molded M-tolerance edge is fine"),
         "ss":    ("ISO M", "tough PVD-coated grade",
-                  "sharp edge, steady feed \u{2014} stainless work-hardens"),
+                  "sharp edge, steady feed \u{2014} stainless work-hardens if you dwell or rub"),
         "ci":    ("ISO K", "K10\u{2013}K20, uncoated or thin coating",
-                  "cuts fine dry"),
-        "alu":   ("ISO N", "uncoated \u{00B7} polished \u{00B7} ground periphery \u{2014} GT inserts (CCGT / DCGT)",
-                  "molded steel-grade inserts smear; polished edge is the whole game"),
+                  "cuts fine dry \u{2014} coolant optional"),
+        "alu":   ("ISO N", "uncoated \u{00B7} polished \u{00B7} ground periphery \u{2014} the GT inserts (CCGT / DCGT)",
+                  "molded steel-grade inserts smear soft metals; the razor polished edge is the whole game"),
         "pl":    ("ISO N", "same polished GT inserts as aluminum",
-                  "high surface speed, gentle feed"),
+                  "high surface speed, gentle feed, keep heat out of the work"),
         "hard":  ("ISO H", "CBN or ceramic for true hard turning (45 HRC and up)",
-                  "standard carbide rubs"),
+                  "standard carbide rubs \u{2014} light cuts, rigid setup, no interruptions"),
     ]
 
     /// §1d "Reading an Insert Code" position table (7 rows, verbatim).
@@ -183,11 +183,23 @@ struct InsertsSubView: View {
         }
         .padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(card.yours ? color.opacity(0.06) : Catppuccin.surface0,
-                    in: RoundedRectangle(cornerRadius: 10))
+        .background(Catppuccin.surface0, in: RoundedRectangle(cornerRadius: 10))
+        // Web (app-new.html:4208): every card gets a `${hl}40` border → accent at 0.25.
         .overlay(RoundedRectangle(cornerRadius: 10)
-            .strokeBorder(card.yours ? color.opacity(0.7) : Catppuccin.surface1,
-                          lineWidth: card.yours ? 1.5 : 1))
+            .strokeBorder(color.opacity(0.25), lineWidth: 1))
+        // Web (app-new.html:4209–4219): yours-cards carry a "YOUR HOLDER" pill, top-right.
+        .overlay(alignment: .topTrailing) {
+            if card.yours {
+                Text("YOUR HOLDER")
+                    .font(AppFont.mono(9))
+                    .kerning(0.5)
+                    .foregroundStyle(color)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .overlay(Capsule().strokeBorder(color, lineWidth: 1))
+                    .padding(8)
+            }
+        }
     }
 
     // MARK: - InsertSVG (§1a, element-for-element, size = 78)

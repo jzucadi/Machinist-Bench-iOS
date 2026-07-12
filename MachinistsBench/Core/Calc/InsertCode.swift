@@ -513,14 +513,14 @@ public enum ToolChooser {
     /// - `bfeat` bore feature             default "thru"
     /// - `cut`   cut type                 default "gen"
     /// - `mat`   material key             default "steel"
-    /// - `mach`  machine/rigidity key     default "mid"
+    /// - `mach`  machine/rigidity key     default "light"
     public static func recommend(
         op:    String = "turn",
         feat:  String = "plain",
         bfeat: String = "thru",
         cut:   String = "gen",
         mat:   String = "steel",
-        mach:  String = "mid"
+        mach:  String = "light"
     ) -> ToolRecommendation {
 
         // Thread is a special case — laydown insert, no geometry table

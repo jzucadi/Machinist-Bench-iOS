@@ -4,10 +4,10 @@ struct FilesSubView: View {
     let system: UnitSystem
 
     // MARK: - Colors (§5 + §0 bindings)
-    // S.orange → literal per §0-Addendum ("distinct orange — use literal")
-    private static let fileColor = Catppuccin.hex(0xff9558)
+    // S.orange → Catppuccin.peach per §0-Addendum ruling 1 (peach is Mocha's orange)
+    private static let fileColor = Catppuccin.peach
     // fill = color + "22" → opacity 0x22/0xFF ≈ 0.133
-    private static let fileFill  = Catppuccin.hex(0xff9558).opacity(0.133)
+    private static let fileFill  = Catppuccin.peach.opacity(0.133)
     // safe edge: S.green → Catppuccin.green
     private static let safeEdge  = Catppuccin.green
     // stroke width per §5

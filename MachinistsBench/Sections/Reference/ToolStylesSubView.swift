@@ -4,10 +4,10 @@ struct ToolStylesSubView: View {
     let system: UnitSystem
 
     // MARK: - Colors (§0 + B1-report bindings)
-    // S.panel2 → literal per §0 (no Catppuccin match)
-    private static let shankFill   = Catppuccin.hex(0x161b27)
-    // S.line2  → literal per §0
-    private static let shankStroke = Catppuccin.hex(0x2e3850)
+    // S.panel2 → Catppuccin.surface0 per §0-Addendum ruling 3
+    private static let shankFill   = Catppuccin.surface0
+    // S.line/S.line2 → Catppuccin.surface1 per §0-Addendum ruling 3
+    private static let shankStroke = Catppuccin.surface1
     // head accent: S.violet → Catppuccin.mauve (web default is S.violet)
     private static let headColor   = Catppuccin.mauve
 

@@ -37,12 +37,16 @@ struct HomeView: View {
     }
 
     @ViewBuilder private func row(_ item: SectionItem) -> some View {
+        // .listRowBackground must be on the row content List sees (the NavigationLink /
+        // top-level label), not inside the link's label, where List ignores it.
         if item.available {
             NavigationLink {
                 destination(for: item.id).navigationTitle(item.name)
             } label: { label(item) }
+                .listRowBackground(Catppuccin.mantle)
         } else {
-            label(item).foregroundStyle(Catppuccin.overlay0)
+            label(item)
+                .listRowBackground(Catppuccin.mantle)
         }
     }
 
@@ -71,12 +75,12 @@ struct HomeView: View {
         HStack {
             Circle().fill(item.accent.color).frame(width: 9, height: 9)
             Text(item.name).font(AppFont.display(15))
+                .foregroundStyle(item.available ? Catppuccin.text : Catppuccin.overlay0)
             Spacer()
             if !item.available {
                 Text("soon").font(AppFont.mono(10)).foregroundStyle(Catppuccin.overlay0)
             }
         }
-        .listRowBackground(Catppuccin.mantle)
     }
 }
 
