@@ -40,7 +40,7 @@ struct HomeView: View {
             .scrollContentBackground(.hidden)
             .background(Catppuccin.base)
             .safeAreaInset(edge: .top, spacing: 0) { TopFade() }
-            .navigationTitle("Machinist's Bench")
+            .navigationTitle("Pocket Machinist")
         }
         .tint(Catppuccin.blue)
     }
