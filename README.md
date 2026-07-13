@@ -8,9 +8,6 @@ dark-themed app that works entirely offline.
 
 Built with SwiftUI. **Zero third-party dependencies.**
 
-> 🚧 **App Store release in progress** - the port is feature-complete and
-> currently in polish/QA ahead of submission.
-
 <img width="501" height="910" alt="Machinist's Bench home screen" src="https://github.com/user-attachments/assets/df92f095-b8b4-4a03-ba3c-c24c20be84d1" />
 
 ## What's inside
@@ -56,25 +53,4 @@ MachinistsBench/
 Tests/MachinistsCoreTests/ # unit tests for the core
 ```
 
-## Building
 
-Open `MachinistsBench.xcodeproj` in Xcode 16+ and run on an iOS 17+
-simulator or device.
-
-Run the core test suite from the repo root:
-
-```sh
-swift test
-```
-
-## Roadmap
-
-- [x] Full native port of the web app (all sections, no placeholders)
-- [ ] Cosmetic polish & bug-fix pass
-- [ ] App Store submission
-
-## Origin
-
-Machinist's Bench started as a single-file web PWA (`app.html`, still in the
-repo). The iOS app is a full native port - same math, same data, redrawn
-natively.
