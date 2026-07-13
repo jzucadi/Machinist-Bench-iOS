@@ -1,8 +1,80 @@
+# Machinist's Bench
 
-# Coming soon
+**The only thing you need for the shop.**
 
-The only thing you need for the shop
+A machinist's pocket reference and calculator suite for iOS — speeds & feeds,
+shop math, layout tools, and illustrated reference charts, all in one
+dark-themed app that works entirely offline.
 
-<img width="501" height="910" alt="Screenshot 2026-07-10 at 4 16 33 PM" src="https://github.com/user-attachments/assets/df92f095-b8b4-4a03-ba3c-c24c20be84d1" />
+Built with SwiftUI. **Zero third-party dependencies.**
 
+> 🚧 **App Store release in progress** — the port is feature-complete and
+> currently in polish/QA ahead of submission.
 
+<img width="501" height="910" alt="Machinist's Bench home screen" src="https://github.com/user-attachments/assets/df92f095-b8b4-4a03-ba3c-c24c20be84d1" />
+
+## What's inside
+
+**Cutting calculators** — Turning, Drilling, Milling, Tapping, Threading,
+Boring, Reaming, and Band Saw: RPM, feed rates, metal removal, spindle power,
+tap drill sizes, thread specs, and more, with material/tool/coating presets.
+
+**Calculate & Measure** — Shop Math (right triangles, bolt circles, tapers,
+sine bars, dividing heads, change gears…), a unit Converter, Layout tools,
+and Scale calculators.
+
+**Reference** — Thread charts and a 14-section reference library: insert
+codes & tool choosing, tool grinding diagrams, drill sharpening, reading
+micrometers & verniers, files, GD&T / print symbols, Loctite, silver solder,
+hardness, heat treat, tapers & collets, and more — with interactive,
+hand-drawn vector diagrams.
+
+**Rose Engine** — an illustrated guide to ornamental turning, including an
+interactive Pattern Lab for previewing guilloché rosette patterns.
+
+Every screen supports Imperial ⇄ Metric switching from the toolbar.
+
+## Tech
+
+- **SwiftUI, iOS 17+, Swift 6** — no packages, no analytics, no network
+- All diagrams are drawn in code with `Canvas` (no bundled images)
+- Calculation engine is a Foundation-only core, covered by **460+ unit tests**
+  ported and verified against the original web app's math
+
+## Project layout
+
+```
+MachinistsBench/
+├── App.swift              # entry point
+├── Home/                  # home screen + section catalog
+├── Sections/              # one folder per tool section
+├── Components/            # shared UI (panels, tables, diagram canvas…)
+├── Core/
+│   ├── Calc/              # pure calculation logic (Foundation-only)
+│   └── Data/              # reference tables & presets
+└── Theme/                 # Catppuccin colors + typography
+Tests/MachinistsCoreTests/ # unit tests for the core
+```
+
+## Building
+
+Open `MachinistsBench.xcodeproj` in Xcode 16+ and run on an iOS 17+
+simulator or device.
+
+Run the core test suite from the repo root:
+
+```sh
+swift test
+```
+
+## Roadmap
+
+- [x] Full native port of the web app (all sections, no placeholders)
+- [ ] Cosmetic polish & bug-fix pass
+- [ ] App Store submission
+
+## Origin
+
+Machinist's Bench started as a single-file web PWA (`app.html`, still in the
+repo). The iOS app is a full native port — same math, same data, redrawn
+natively.

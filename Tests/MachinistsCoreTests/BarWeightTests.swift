@@ -22,6 +22,8 @@ final class BarWeightTests: XCTestCase {
         XCTAssertEqual(r.pounds, 2.6729, accuracy: 1e-4)
         XCTAssertEqual(r.kg, 1.2124, accuracy: 1e-4)
         XCTAssertEqual(r.perFootLb, 2.6729, accuracy: 1e-4)
+        XCTAssertEqual(r.perMeterKg, r.perFootLb * 1.48816, accuracy: 1e-9) // web v4.46 perMeterKg
+        XCTAssertEqual(r.perMeterKg, 3.9777, accuracy: 1e-3)
     }
 
     // Golden test 2: hex, steel, d1=1 in (AF), len=12 in

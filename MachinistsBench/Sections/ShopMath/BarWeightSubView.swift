@@ -80,18 +80,21 @@ struct BarWeightSubView: View {
             if let r = result {
                 Panel(title: "Results", accent: .mauve) {
                     Readout(label: "Weight",
-                            value: String(format: "%.3f", r.pounds),
-                            unit: "lb",
-                            sub: String(format: "%.3f kg", r.kg),
+                            value: String(format: "%.3f", system == .metric ? r.kg : r.pounds),
+                            unit: system == .metric ? "kg" : "lb",
+                            sub: system == .metric ? String(format: "%.3f lb", r.pounds)
+                                                   : String(format: "%.3f kg", r.kg),
                             accent: .mauve)
-                    Readout(label: "Per Foot",
-                            value: String(format: "%.3f", r.perFootLb),
-                            unit: "lb/ft",
+                    Readout(label: system == .metric ? "Per Meter" : "Per Foot",
+                            value: String(format: "%.3f", system == .metric ? r.perMeterKg : r.perFootLb),
+                            unit: system == .metric ? "kg/m" : "lb/ft",
                             accent: .mauve)
                     Readout(label: "Volume",
-                            value: String(format: "%.3f", r.volCuIn),
-                            unit: "in\u{00B3}",
-                            sub: String(format: "%.3f cm\u{00B3}", r.volCuIn * 16.387064),
+                            value: system == .metric ? String(format: "%.1f", r.volCuIn * 16.387064)
+                                                     : String(format: "%.3f", r.volCuIn),
+                            unit: system == .metric ? "cm\u{00B3}" : "in\u{00B3}",
+                            sub: system == .metric ? String(format: "%.3f in\u{00B3}", r.volCuIn)
+                                                   : String(format: "%.1f cm\u{00B3}", r.volCuIn * 16.387064),
                             accent: .mauve)
                 }
                 .padding(.horizontal, 16)

@@ -21,13 +21,16 @@ public struct BarResult: Sendable {
     public let kg: Double
     /// Weight per foot in pounds per foot
     public let perFootLb: Double
+    /// Weight per meter in kilograms per meter
+    public let perMeterKg: Double
 
-    public init(areaSqIn: Double, volCuIn: Double, pounds: Double, kg: Double, perFootLb: Double) {
+    public init(areaSqIn: Double, volCuIn: Double, pounds: Double, kg: Double, perFootLb: Double, perMeterKg: Double) {
         self.areaSqIn = areaSqIn
         self.volCuIn = volCuIn
         self.pounds = pounds
         self.kg = kg
         self.perFootLb = perFootLb
+        self.perMeterKg = perMeterKg
     }
 }
 
@@ -86,12 +89,14 @@ public func barWeight(
     let lb = vol * density
     let kgVal = lb * 0.453592
     let perFoot = area * 12.0 * density
+    let perMeter = perFoot * 1.48816  // lb/ft → kg/m, same constant as the web source
 
     return BarResult(
         areaSqIn: area,
         volCuIn: vol,
         pounds: lb,
         kg: kgVal,
-        perFootLb: perFoot
+        perFootLb: perFoot,
+        perMeterKg: perMeter
     )
 }

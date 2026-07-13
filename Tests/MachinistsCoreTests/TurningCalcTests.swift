@@ -6,6 +6,8 @@ final class TurningCalcTests: XCTestCase {
         XCTAssertEqual(coatFactor(tool: .carbide, coating: .none), 1.0, accuracy: 1e-9)
         XCTAssertEqual(coatFactor(tool: .carbide, coating: .tialn), 1.5, accuracy: 1e-9)
         XCTAssertEqual(coatFactor(tool: .hss, coating: .tialn), 1.2, accuracy: 1e-9) // 1+(1.5-1)*0.4
+        XCTAssertEqual(coatFactor(tool: .carbide, coating: .zrn), 1.25, accuracy: 1e-9) // web v4.46 COAT_F.zrn
+        XCTAssertEqual(coatFactor(tool: .hss, coating: .zrn), 1.1, accuracy: 1e-9)      // 1+(1.25-1)*0.4
     }
 
     func testLubeFactor() {

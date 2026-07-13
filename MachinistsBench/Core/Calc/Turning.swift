@@ -1,10 +1,10 @@
 import Foundation
 
 public enum Tool: String, CaseIterable, Sendable { case hss, carbide }
-public enum Coating: String, CaseIterable, Sendable { case none, tin, ticn, tialn, alcrn }
+public enum Coating: String, CaseIterable, Sendable { case none, tin, ticn, zrn, tialn, alcrn }
 public enum Lube: String, CaseIterable, Sendable { case flood, oil, dry }
 
-private let coatF: [Coating: Double] = [.none: 1, .tin: 1.2, .ticn: 1.3, .tialn: 1.5, .alcrn: 1.6]
+private let coatF: [Coating: Double] = [.none: 1, .tin: 1.2, .ticn: 1.3, .zrn: 1.25, .tialn: 1.5, .alcrn: 1.6]
 
 public func coatFactor(tool: Tool, coating: Coating) -> Double {
     let cf = coatF[coating] ?? 1

@@ -61,7 +61,8 @@ struct DrillingView: View {
         Field(label: "Coating", hint: String(format: "×%.2f SFM", coatFactor(tool: tool, coating: coating))) {
             Picker("", selection: $coating) {
                 Text("None").tag(Coating.none); Text("TiN").tag(Coating.tin)
-                Text("TiCN").tag(Coating.ticn); Text("TiAlN").tag(Coating.tialn)
+                Text("TiCN").tag(Coating.ticn); Text("ZrN").tag(Coating.zrn)
+                Text("TiAlN").tag(Coating.tialn)
                 Text("AlCrN").tag(Coating.alcrn)
             }.pickerStyle(.menu).tint(Catppuccin.teal)
         }
