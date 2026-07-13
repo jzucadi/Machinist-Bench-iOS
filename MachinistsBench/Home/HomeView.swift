@@ -6,14 +6,22 @@ struct HomeView: View {
         // Color the navigation titles lavender (no native SwiftUI modifier for this yet).
         // Must set all three appearances; the large title at scroll-top uses scrollEdgeAppearance.
         let lavender = UIColor(Catppuccin.lavender)
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: lavender]
-        appearance.titleTextAttributes = [.foregroundColor: lavender]
+        // Scrolled state: opaque base so content never shows through the bar (no hairline —
+        // the fade strip below the bar provides the soft edge). At rest: transparent.
+        let scrolled = UINavigationBarAppearance()
+        scrolled.configureWithOpaqueBackground()
+        scrolled.backgroundColor = UIColor(Catppuccin.base)
+        scrolled.shadowColor = .clear
+        scrolled.largeTitleTextAttributes = [.foregroundColor: lavender]
+        scrolled.titleTextAttributes = [.foregroundColor: lavender]
+        let atRest = UINavigationBarAppearance()
+        atRest.configureWithTransparentBackground()
+        atRest.largeTitleTextAttributes = [.foregroundColor: lavender]
+        atRest.titleTextAttributes = [.foregroundColor: lavender]
         let bar = UINavigationBar.appearance()
-        bar.standardAppearance = appearance
-        bar.scrollEdgeAppearance = appearance
-        bar.compactAppearance = appearance
+        bar.standardAppearance = scrolled
+        bar.scrollEdgeAppearance = atRest
+        bar.compactAppearance = scrolled
     }
 
     var body: some View {
@@ -31,6 +39,7 @@ struct HomeView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Catppuccin.base)
+            .safeAreaInset(edge: .top, spacing: 0) { TopFade() }
             .navigationTitle("Machinist's Bench")
         }
         .tint(Catppuccin.blue)
