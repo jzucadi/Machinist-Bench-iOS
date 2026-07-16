@@ -8,8 +8,6 @@ dark-themed app that works entirely offline.
 
 Built with SwiftUI. **Zero third-party dependencies.**
 
-> 🚧 **App Store release in progress**
-
 <img width="501" height="910" alt="Pocket Machinist home screen" src="https://github.com/user-attachments/assets/df92f095-b8b4-4a03-ba3c-c24c20be84d1" />
 
 ## What's inside
